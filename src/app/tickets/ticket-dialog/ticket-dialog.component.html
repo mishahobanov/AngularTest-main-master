@@ -1,0 +1,41 @@
+
+<h2 mat-dialog-title class="text-center">Need help? Send a ticket</h2>
+<mat-dialog-content class="mat-typography">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="col-12">
+              <input type="title" class="form-control mb-3" placeholder="Title" id="inputEmail4" formControlName="title" [ngClass]="{ 'is-invalid': submitted && f['title'].errors }">
+              <div *ngIf="submitted && f['title'].errors" class="invalid-feedback">
+                <div *ngIf="f['title'].errors['required']">Title is required</div>
+              </div>
+            </div>
+              <div class="col-12">
+                <select class="form-select form-select mb-3" aria-label=".form-select-lg example" formControlName="departmentIdentifier" [ngClass]="{ 'is-invalid': submitted && f['departmentIdentifier'].errors }">
+                    <option selected *ngFor="let department of departmentList" [ngValue]="department.id">
+                        {{department.deparmentName}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f['departmentIdentifier'].errors" class="invalid-feedback">
+                    <div *ngIf="f['departmentIdentifier'].errors['required']">Department is required</div>
+                  </div>
+              </div>
+              <div class="col-12 mb-3">
+                <quill-editor [style]="editorStyle" [modules]="config" formControlName="message" [ngClass]="{ 'is-invalid': submitted && f['message'].errors }"></quill-editor>
+                <div *ngIf="submitted && f['message'].errors" class="invalid-feedback">
+                  <div *ngIf="f['message'].errors['required']">Message is required</div>
+                </div>
+              </div>
+              <div class="col-12">
+                    <div class="custom-file mb-3">
+                        <input type="file" class="custom-file-input" id="customFile" formControlName="attachment">
+                        <label class="custom-file-label" for="customFile">Select a file</label>
+                      </div>
+                </div>
+                <mat-dialog-actions align="end">
+                  <div class="col-12">
+                      <button type="submit" mat-raised-button color="primary" style="width:100%;">Send ticket</button>
+                  </div>
+              </mat-dialog-actions>
+      </form>
+</mat-dialog-content>
+
+

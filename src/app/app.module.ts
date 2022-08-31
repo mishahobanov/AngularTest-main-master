@@ -29,7 +29,7 @@ export interface AppState {
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
     HttpClientModule,
-    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})
   ],
   providers: [],
   bootstrap: [AppComponent]

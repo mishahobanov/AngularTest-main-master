@@ -7,6 +7,8 @@ import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
 import { TicketState } from '../ticket.module';
 import { TicketDialogComponent } from '../ticket-dialog/ticket-dialog.component';
+import { MatSort, Sort } from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-ticket-list',
@@ -16,7 +18,6 @@ import { TicketDialogComponent } from '../ticket-dialog/ticket-dialog.component'
 })
 export class TicketListComponent implements AfterViewInit {
   @Input() items: Ticket[] | null;
-
   displayedColumns: string[] = ['id', 'createdAt','updateAt','departmentName', 'title', 'status','details'];
   
   dataSource: MatTableDataSource<Ticket> = new MatTableDataSource();
@@ -24,13 +25,14 @@ export class TicketListComponent implements AfterViewInit {
 
   constructor(private dialog: MatDialog,
     private cdRef: ChangeDetectorRef,
-    private store: Store<TicketState>) {
+    private _liveAnnouncer: LiveAnnouncer) {
 
     this.items = [];
 
      }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (
@@ -48,6 +50,7 @@ export class TicketListComponent implements AfterViewInit {
    this.dataSource.data = this.mapDepartmentById(this.items) || [];
     this.resultsLength = this.dataSource.data.length;
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     this.cdRef.detectChanges();
   }
 
@@ -63,6 +66,13 @@ export class TicketListComponent implements AfterViewInit {
     return tickets?.map(item => {
     return { ...item, departmentName: departments.find(i => i.id == item.departmentIdentifier)?.deparmentName! };
     });
-    
+  }
+
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 }

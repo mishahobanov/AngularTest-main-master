@@ -22,6 +22,34 @@ export class TicketsEffects {
             )
             )
         );
+        loadTicketsNew$ = createEffect(
+            () =>
+                this.actions$.pipe(
+                ofType(fromTicketActions.LoadTicketsStatusNew),
+                exhaustMap(() =>
+                this.ticketsService.getTickets()
+                .pipe(
+                    map((payload) => fromTicketActions.LoadTicketsStatusNewSuccess({payload})),
+                    catchError(() => of(fromTicketActions.LoadTicketsFail()))
+                    )
+                )
+                )
+            );
+    loadTicketsEdited$ = createEffect(
+                () =>
+                    this.actions$.pipe(
+                    ofType(fromTicketActions.LoadTicketsStatusEdit),
+                    exhaustMap(() =>
+                    this.ticketsService.getTickets()
+                    .pipe(
+                        map((payload) => fromTicketActions.LoadTicketsStatusEditSuccess({ payload })),
+                        catchError(() => of(fromTicketActions.LoadTicketsFail()))
+                        )
+                    )
+                    )
+                );
+    
+        
 
     insertElement$ = createEffect(
         () =>

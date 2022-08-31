@@ -2,8 +2,14 @@
     <span>Filter</span>
     <mat-icon>filter_list</mat-icon>
   </button>
+  <button mat-stroked-button aria-label="filter tickets" class="tickets-filter" (click)="showAllTickets()">
+    <mat-icon>refresh</mat-icon>
+  </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="onSubmit()">
+    <button mat-menu-item (click)="showNewTickets()">
       <span>Show new Tickets</span>
+    </button>
+    <button mat-menu-item (click)="showEditedTickets()">
+      <span>Show edited Tickets</span>
     </button>
   </mat-menu>

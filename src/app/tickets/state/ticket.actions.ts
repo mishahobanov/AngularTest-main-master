@@ -7,6 +7,13 @@ export const enum ticketsTypeAction {
   LOAD_TICKETS = '[LOAD_TICKTES] LOAD TICKTES',
   LOAD_TICKTES_SUCCESS = '[LOAD_TICKTES_SUCCESS] LOAD TICKTES SUCCESS',
   LOAD_TICKTES_FAIL = '[LOAD_TICKTES_FAIL] LOAD TICKTES FAIL',
+  LOAD_TICKTES_STATUS_NEW = '[LOAD_TICKTES_STATUS_NEW] LOAD TICKTES STATUS NEW',
+  LOAD_TICKTES_STATUS_NEW_SUCCESS = '[LOAD_TICKTES_STATUS_NEW_SUCCESS] LOAD TICKTES STATUS NEW SUCCESS',
+
+  LOAD_TICKTES_STATUS_EDIT = '[LOAD_TICKTES_STATUS_EDIT] LOAD TICKTES STATUS EDIT',
+  LOAD_TICKTES_STATUS_EDIT_SUCCESS = '[LOAD_TICKTES_STATUS_EDIT_SUCCESS] LOAD TICKTES STATUS EDIT SUCCESS',
+
+
 
   CREATE_TICKETS = '[CREATE_TICKETS] CREATE TICKETS',
   CREATE_TICKETS_SUCCESS = '[CREATE_TICKETS_SUCCESS] CREATE TICKETS SUCCESS',
@@ -31,6 +38,25 @@ export const LoadTicketsSuccess = createAction(
 
 export const LoadTicketsFail = createAction(
   ticketsTypeAction.LOAD_TICKTES_FAIL
+);
+
+export const LoadTicketsStatusNew = createAction(
+  ticketsTypeAction.LOAD_TICKTES_STATUS_NEW,
+);
+export const LoadTicketsStatusNewSuccess = createAction(
+  ticketsTypeAction.LOAD_TICKTES_STATUS_NEW_SUCCESS,
+  props<{ payload: Ticket[] }>()
+);
+
+
+export const LoadTicketsStatusEdit = createAction(
+  ticketsTypeAction.LOAD_TICKTES_STATUS_EDIT,
+);
+
+export const LoadTicketsStatusEditSuccess = createAction(
+  ticketsTypeAction.LOAD_TICKTES_STATUS_EDIT_SUCCESS,
+  props<{ payload: Ticket[] }>()
+
 );
 
 // Create Tickets

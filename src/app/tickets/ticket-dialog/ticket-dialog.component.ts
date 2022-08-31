@@ -45,13 +45,13 @@ export class TicketDialogComponent  {
     public dialogRef: MatDialogRef<TicketDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public dataDialog: DialogInsertElement
   ) {
-    if (dataDialog.element) {
-      this.editMode = true;
+  if (dataDialog.element) {
+    this.editMode = true;
     this.form = this.fb.group({
       title:  [dataDialog.element.title, [Validators.required]],
       departmentIdentifier:  [dataDialog.element ? dataDialog.element.departmentIdentifier : '', [Validators.required]],
       message: [dataDialog.element ? dataDialog.element.message : '', [Validators.required]],
-      attachment: [dataDialog.element ? dataDialog.element.attachment : '', [Validators.required]],
+      attachment: [dataDialog.element ? dataDialog.element.attachment : ''],
     });
   }
   else{
@@ -59,7 +59,7 @@ export class TicketDialogComponent  {
       title:  ['', [Validators.required]],
       departmentIdentifier:  ['', [Validators.required]],
       message: ['', [Validators.required]],
-      attachment: ['', [Validators.required]],
+      attachment: [''],
     });
   }
 
@@ -67,7 +67,7 @@ export class TicketDialogComponent  {
 
   onSubmit() {
     this.submitted = true;
-
+    console.log(Math.random());
     if (this.form.invalid) {
       return;
     }
@@ -94,7 +94,7 @@ export class TicketDialogComponent  {
       );
     } else {
       let ticketCreate: Ticket = {
-        id: "a" + Math.floor(Math.random() * 10) + 1,
+        id: "a" + Math.floor((Math.random() * 47) + 1),
         departmentIdentifier: obj.departmentIdentifier,
         title: obj.title,
         message: obj.message,

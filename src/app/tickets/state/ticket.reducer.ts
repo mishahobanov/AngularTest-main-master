@@ -14,6 +14,13 @@ export const ticketsReducer= createReducer(
     on(fromTicketActions.LoadTickets,(state)=>({...state})),
     on(fromTicketActions.LoadTicketsSuccess,(state, payload )=>({...state, tickets: payload.payload})),
     on(fromTicketActions.LoadTicketsFail,(state)=>({...state})),
+    on(fromTicketActions.LoadTicketsStatusNew,(state)=>({...state,tickets:state.tickets.filter(x=>x.status==='New')})),
+    on(fromTicketActions.LoadTicketsStatusNewSuccess,(state,payload)=>({...state, tickets:payload.payload.filter(x=>x.status === 'New')})),
+
+    on(fromTicketActions.LoadTicketsStatusEdit,(state)=>({...state,tickets: state.tickets.filter(x=>x.status === 'Edited')})),
+    on(fromTicketActions.LoadTicketsStatusEditSuccess,(state,payload)=>({...state,tickets: payload.payload.filter(x=>x.status === 'Edited')})),
+
+
 
   on(fromTicketActions.createTicketsSuccess, (state, { payload} )=>({...state, tickets: [...state.tickets, payload]})),
     on(fromTicketActions.createTicketsFail,(state)=>({...state})),

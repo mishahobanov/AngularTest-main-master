@@ -10,7 +10,3 @@ export const getTickets = createSelector(
     (state: TicketState) => state.tickets.tickets
 )
 
-export const getTicketsWithStatuNew = createSelector(
-    getTicketsFeatureState,
-    (state: TicketState) => state.tickets.tickets.filter((filter)=> filter.status == 'New')
-)

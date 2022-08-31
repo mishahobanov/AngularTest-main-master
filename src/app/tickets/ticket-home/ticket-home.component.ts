@@ -8,8 +8,6 @@ import { ITicket, Ticket } from '../ticket.model';
 import { LoadTickets, LoadTicketsSuccess } from '../state/ticket.actions';
 import { TicketState } from '../ticket.module';
 
-
-
 @Component({
   selector: 'app-ticket-home',
   templateUrl: './ticket-home.component.html',
@@ -33,12 +31,12 @@ export class TicketHomeComponent implements OnInit {
   
   openDialog() {
     this.dialog.open(TicketDialogComponent,{
+      width: '400px',
+      height:'450px',
       data: {
         element: null,
       },
     });
-
-    
   }
 
 }

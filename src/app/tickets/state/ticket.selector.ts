@@ -9,4 +9,3 @@ export const getTickets = createSelector(
     getTicketsFeatureState,
     (state: TicketState) => state.tickets.tickets
 )
-

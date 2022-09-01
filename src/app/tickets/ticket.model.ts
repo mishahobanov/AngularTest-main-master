@@ -1,11 +1,4 @@
-// export interface ITicketRows {
-//     identifier: string;
-//     departmentIdentifier: string;
-//     title: string;
-//     status: string;
-//     createdAt: string;
-//     updateAt: string;
-//   }
+
   export interface ITicket {
     id: string;
     departmentIdentifier: string;
@@ -55,14 +48,3 @@ export interface IDep {
   ];
 
   export default departments;
-  // export class ITicketRows {
-  //   identifier: string;
-  //   departmentIdentifier: string;
-  //   title: string;
-  //   status: string;
-  //   createdAt: string;
-  //   updateAt: string;
-  //   constructor(data: Partial<ITicketRows> = {}) {
-  //     Object.assign(this, data);
-  //   }
-  // }

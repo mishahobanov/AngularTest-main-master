@@ -16,8 +16,10 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   styleUrls: ['./ticket-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class TicketListComponent implements AfterViewInit {
   @Input() items: Ticket[] | null;
+
   displayedColumns: string[] = ['id', 'createdAt','updateAt','departmentName', 'title', 'status','details'];
   
   dataSource: MatTableDataSource<Ticket> = new MatTableDataSource();
@@ -65,7 +67,7 @@ export class TicketListComponent implements AfterViewInit {
     
     return tickets?.map(item => {
     return { ...item, departmentName: departments.find(i => i.id == item.departmentIdentifier)?.deparmentName! };
-    });
+    })!.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }
 
   announceSortChange(sortState: Sort) {

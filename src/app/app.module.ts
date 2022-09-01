@@ -9,7 +9,6 @@ import { TicketModule } from './tickets/ticket.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
-import { reducers } from './store/index';
 import { environment } from 'src/environments/environment';
 export interface AppState {
   app: {
@@ -26,7 +25,7 @@ export interface AppState {
     TicketModule,
     AppRoutingModule,
     SharedModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     HttpClientModule,
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})

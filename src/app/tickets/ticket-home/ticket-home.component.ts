@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { TicketDialogComponent } from '../ticket-dialog/ticket-dialog.component';
 import{getTickets} from '../state/ticket.selector';
 import { select, Store } from '@ngrx/store';
@@ -18,8 +18,6 @@ export class TicketHomeComponent implements OnInit {
   tickets$: Observable<Ticket[]> = this.store.pipe(
     select(getTickets)
   );
-
-  // filter$: Observable<UiFilterCrud> = this.store.pipe(select(getFilterCrud));
 
   title = 'AngularTest';
   constructor(private store: Store<TicketState>, private dialog : MatDialog){
